@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include sapcon_theme *.css
+recursive-include sapcon_theme *.csv
+recursive-include sapcon_theme *.html
+recursive-include sapcon_theme *.ico
+recursive-include sapcon_theme *.js
+recursive-include sapcon_theme *.json
+recursive-include sapcon_theme *.md
+recursive-include sapcon_theme *.png
+recursive-include sapcon_theme *.py
+recursive-include sapcon_theme *.svg
+recursive-include sapcon_theme *.txt
+recursive-exclude sapcon_theme *.pyc
