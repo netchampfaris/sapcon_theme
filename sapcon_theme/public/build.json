@@ -1,0 +1,8 @@
+{
+    "css/sapcon-theme.css": [
+        "public/scss/index.scss"
+    ],
+    "js/sapcon-theme.js": [
+        "public/js/index.js"
+    ]
+}

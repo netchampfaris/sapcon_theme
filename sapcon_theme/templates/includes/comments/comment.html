@@ -1,0 +1,9 @@
+{% from "templates/includes/media.html" import media %}
+
+{{ media(
+    comment.sender_full_name,
+    comment.content,
+    frappe.get_gravatar(comment.sender),
+    comment.creation
+)
+}}

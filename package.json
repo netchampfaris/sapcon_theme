@@ -1,0 +1,10 @@
+{
+  "name": "sapcon_theme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Faris Ansari <netchamp.faris@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.3"
+  }
+}

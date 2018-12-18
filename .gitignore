@@ -4,3 +4,4 @@
 *.swp
 tags
 sapcon_theme/docs/current
+node_modules

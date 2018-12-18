@@ -1,0 +1,18 @@
+{% from "erpnext/templates/includes/macros.html" import product_image_square %}
+
+<div class="col-md-6 mb-4">
+	<a class="card text-dark bg-light h-100" href="{{ route|abs_url }}">
+		<div class="card-body">
+			<h5 class="card-title m-0">{{ item_name or name }}</h5>
+			{% if item_code and item_code != item_name %}
+				<h6 class="card-subtitle mb-2 text-muted">{{ _('Item Code') }}: {{ item_code }}</h6>
+			{% endif %}
+			{% if website_description != item_name %}
+				<p class="card-text mt-2">{{ website_description or description }}</p>
+			{% endif %}
+		</div>
+		<!-- <div class='col-xs-3 col-sm-2 product-image-wrapper'>
+			{{ product_image_square(thumbnail or website_image or image) }}
+		</div> -->
+	</a>
+</div>
