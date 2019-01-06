@@ -50,3 +50,9 @@ def set_filter_properties(item_codes, field, value):
         where name in ({in_query})
     '''.format(field=field, in_query=in_query), values, debug=1)
 
+def add_indexes():
+    frappe.db.add_index('Item', ['product_type'])
+    frappe.db.add_index('Item', ['sensing_type'])
+    frappe.db.add_index('Item', ['variant_of', 'name'])
+    frappe.db.add_index('Item Variant Attribute', ['attribute', 'attribute_value', 'parent'])
+    frappe.db.add_index('Item Variant Attribute', ['variant_of'])
