@@ -1,11 +1,12 @@
 import frappe
-
+from erpnext.www.products.item_variants_cache import ItemVariantsCacheManager
+from erpnext.www.products.index import get_item_attributes
 
 def set_variant_of():
 	templates = get_item_templates()
 
 	for template in templates:
-		print('Processing', template)
+		print('Processing ' + template)
 
 		frappe.db.sql('''
 			update tabItem
@@ -14,6 +15,37 @@ def set_variant_of():
 			where name like "{template}-%"
 		'''.format(template=template))
 
+		frappe.db.commit()
+
+def add_missing_attributes_in_items():
+	templates = get_item_templates()
+
+	for template in templates:
+		print('Processing ' + template)
+		attributes = get_item_attributes(template)
+		attribute_list = [a.attribute for a in attributes]
+		item_cache = ItemVariantsCacheManager(template)
+
+		item_variants_data = item_cache.get_item_variants_data()
+		unique_attributes = set([row[1] for row in item_variants_data])
+
+		invalid_attributes = set()
+		for a in unique_attributes:
+			if a not in attribute_list:
+				invalid_attributes.add(a)
+
+		doc = frappe.get_doc('Item', template)
+
+		for attribute in invalid_attributes:
+			existing_attributes = [a.attribute for a in doc.attributes]
+
+			if attribute not in existing_attributes:
+				print('Adding attribute: ' + attribute)
+				doc.append('attributes', {
+					'attribute': attribute
+				})
+
+		doc.save()
 		frappe.db.commit()
 
 
